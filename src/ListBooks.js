@@ -1,33 +1,42 @@
 import React from 'react'
-import BookShelf from './BookShelf.js'
+import BookShelf from './BookShelf'
+import PropTypes from 'prop-types'
 
-// Dans component BookShelf, compléter par props
 
 class ListBooks extends React.Component {
-	
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
+  }
+
+  state = {}
+
 	render() {
+    const { books } = this.props;
+    
 		return (
-			<div className="list-books">
-				<div className="list-books-title">
-					<h1>MyReads</h1>
-				</div>
 				<div className="list-books-content">
 					<div>
-						<div className="bookshelf">
-							<h2 className="bookshelf-title">Currently Reading</h2>
-							<BookShelf />
-						</div>
-						<div className="bookshelf">
-							<h2 className="bookshelf-title">Want to Read</h2>
-							<BookShelf />
-						</div>
-						<div className="bookshelf">
-							<h2 className="bookshelf-title">Read</h2>
-							<BookShelf />
+              <BookShelf
+                title='Currently Reading'
+                books = {books}
+                shelf='currentlyReading'
+                //changeShelf={changeShelf}
+              />
+              <BookShelf
+              title='Want to Read'
+              books = {books}
+              shelf='wantToRead'
+              //changeShelf={changeShelf}
+              />
+              <BookShelf
+              title='Read'
+              books = {books}
+              shelf='read'
+              //changeShelf={changeShelf}
+              />
 						</div>
 					</div>
-				</div>
-			</div>
 		)
 	}
 

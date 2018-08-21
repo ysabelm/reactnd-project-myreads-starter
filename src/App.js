@@ -29,7 +29,19 @@ class BooksApp extends React.Component {
     })
   }
 
-  
+  changeShelf = (event, book) => {
+    const bookShelf = event.target.value
+
+    if (this.state.books) {
+      BooksAPI.update(book, bookShelf).then(() => {
+        book.bookShelf = bookShelf;
+        this.setState(state => ({
+          books: state.books.filter(b => b.id !== book.id).concat([ book ])
+        }))
+      }
+    )
+    }
+  }
 
   render() {
     return (
