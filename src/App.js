@@ -1,7 +1,11 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
 import { Route, Link } from 'react-router-dom'
+
+import * as BooksAPI from './BooksAPI'
+
+import './App.css'
+
+import Header from './Header'
 import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
 
@@ -25,9 +29,12 @@ class BooksApp extends React.Component {
     })
   }
 
+  
+
   render() {
     return (
       <div className="app">
+        <Header />
         <Route path='/search' render={({ history }) => (
           <SearchBook />
         )} />
