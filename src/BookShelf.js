@@ -19,7 +19,9 @@ class BookShelf extends React.Component {
     return (
       <div className="bookshelf-books">
         <ol className="books-grid">
-          <Book />
+          <Book
+            
+          />
         </ol>
       </div>
     )

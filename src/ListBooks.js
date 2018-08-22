@@ -6,40 +6,29 @@ import PropTypes from 'prop-types'
 class ListBooks extends React.Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
-    changeShelf: PropTypes.func.isRequired
+    //changeShelf: PropTypes.func.isRequired
   }
 
   state = {}
 
-	render() {
-    const { books } = this.props;
-    
-		return (
-				<div className="list-books-content">
-					<div>
-              <BookShelf
-                title='Currently Reading'
-                books = {books}
-                shelf='currentlyReading'
-                //changeShelf={changeShelf}
-              />
-              <BookShelf
-              title='Want to Read'
-              books = {books}
-              shelf='wantToRead'
-              //changeShelf={changeShelf}
-              />
-              <BookShelf
-              title='Read'
-              books = {books}
-              shelf='read'
-              //changeShelf={changeShelf}
-              />
-						</div>
-					</div>
-		)
-	}
+  render() {
+    const { books, shelves } = this.props
 
+    return (
+      <div className="list-books-content">
+        {shelves.map((shelf) => (
+          <li key={books.shelf}>
+            <BookShelf
+              books={books}
+              shelfTitle={shelf.title}
+              shelves={shelves}
+            //changeShelf={changeShelf}
+            />
+          </li>
+        ))}
+      </div>
+    )
+  }
 }
 
 export default ListBooks
