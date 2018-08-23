@@ -25,7 +25,6 @@ class BookShelf extends React.Component {
       </ol>
     )
   }
-
 }
 
 export default BookShelf

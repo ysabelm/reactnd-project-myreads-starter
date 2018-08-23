@@ -33,7 +33,6 @@ class Book extends React.Component {
           <div className="book-authors">{book.authors}</div>
         </div>
       </li>
-
     )
   }
 }

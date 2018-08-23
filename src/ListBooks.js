@@ -9,16 +9,12 @@ class ListBooks extends React.Component {
     changeShelf: PropTypes.func.isRequired
   }
 
-  state = {}
-
   render() {
     const { books, changeShelf } = this.props
     const shelfCategory = [
       { category: 'currentlyReading', title: 'Currently Reading' },
       { category: 'wantToRead', title: 'Want to Read' },
       { category: 'read', title: 'Read' }]
-
-
 
     return (
       <div className="list-books-content">
