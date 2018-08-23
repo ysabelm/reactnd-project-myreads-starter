@@ -11,7 +11,7 @@ class Book extends React.Component {
 
   render() {
     const { book, books, changeShelf } = this.props
-
+console.log('from books.js' +changeShelf)
     return (
       <li>
         <div className="book">

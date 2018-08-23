@@ -15,7 +15,6 @@ class ListBooks extends React.Component {
       { category: 'currentlyReading', title: 'Currently Reading' },
       { category: 'wantToRead', title: 'Want to Read' },
       { category: 'read', title: 'Read' }]
-
     return (
       <div className="list-books-content">
         {shelfCategory.map((shelf, index) => {
