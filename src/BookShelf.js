@@ -1,31 +1,31 @@
 import React from 'react'
-//import * as BooksAPI from './BooksAPI'
+import PropTypes from 'prop-types'
 import Book from './Book'
 
 
-// Se connecter à l'api: Use get (BookId) to obtenir les keys/values
-// don't forget to delete one book
-// remplacer les titres, auteurs et vignettes par {Books.name, Books.author...}
-// voir pour select --> component ou non? pour des motifs de state
-// update API vs state...
-// props ?
-
-
-
 class BookShelf extends React.Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
+  }
 
   render() {
+    const { books, changeShelf } = this.props
 
     return (
-      <div className="bookshelf-books">
-        <ol className="books-grid">
+      <ol className="books-grid">
+        {books.map((book) => (
           <Book
-            
+            book={book}
+            books={books}
+            key={book.id}
+            changeShelf={changeShelf}
           />
-        </ol>
-      </div>
+        ))}
+      </ol>
     )
   }
+
 }
 
 export default BookShelf
