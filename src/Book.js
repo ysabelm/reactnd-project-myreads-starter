@@ -4,11 +4,13 @@ import BookShelfChanger from './BookShelfChanger'
 
 class Book extends React.Component {
   static propTypes = {
-    book: PropTypes.object.isRequired
+    book: PropTypes.object.isRequired,
+    books: PropTypes.array.isRequired,
+    changeShelf: PropTypes.func.isRequired
   }
 
   render() {
-    const { book } = this.props
+    const { book, books, changeShelf } = this.props
 
     return (
       <li>
@@ -22,7 +24,9 @@ class Book extends React.Component {
               }}
             />
             <BookShelfChanger
-
+              book={book}
+              books={books}
+              changeShelf={changeShelf}
             />
           </div>
           <div className="book-title">{book.title}</div>
