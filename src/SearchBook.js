@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from "./BooksAPI"
 import PropTypes from 'prop-types'
 import Book from './Book'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
-
 
 
 class SearchBook extends React.Component {
@@ -27,7 +24,6 @@ class SearchBook extends React.Component {
     this.setState({ query: '', books: [] })
   }
 
-  // Use the API to search new books
   searchNewBook = (query) => {
     if (!query) {
       this.clearQuery(query)
@@ -48,15 +44,6 @@ class SearchBook extends React.Component {
   render() {
     const { changeShelf } = this.props
     const { query, books } = this.state;
-    let bookSearchResult
-
-    if (query) {
-      const match = new RegExp(escapeRegExp(query), 'i')
-      bookSearchResult = books.filter(book => match.test(book.title))
-    } else {
-      bookSearchResult = books
-    }
-    bookSearchResult.sort(sortBy('title'))
 
     return (
       <div className="search-books">
@@ -72,13 +59,13 @@ class SearchBook extends React.Component {
           </div>
         </div>
         <div className="search-books-results">
-          {bookSearchResult.length > 0 && (
+          {books.length > 0 && (
             <div>
               <div>
-                <h3>Found {bookSearchResult.length} books</h3>
+                <h3>Found {books.length} books</h3>
               </div>
               <ol className="books-grid">
-                {bookSearchResult.map((book) => (
+                {books.map((book) => (
                   <Book
                     key={book.id}
                     book={book}
