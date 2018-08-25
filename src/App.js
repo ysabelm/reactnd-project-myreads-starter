@@ -1,10 +1,7 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-
+import { Route, Link, Switch } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-
 import './App.css'
-
 import Header from './Header'
 import SearchBook from './SearchBook'
 import ListBooks from './ListBooks'
@@ -13,7 +10,6 @@ import ListBooks from './ListBooks'
 class BooksApp extends React.Component {
   state = {
     books: [],
-    showSearchPage: false
   }
 
   componentDidMount() {
@@ -42,24 +38,29 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
-        <Header />
-        <Route path='/search' render={({ history }) => (
-          <SearchBook
-            books={books}
-            changeShelf={this.changeShelf}
-          />
-        )} />
-        <Route exact path='/' render={() => (
-          <ListBooks
-            books={books}
-            changeShelf={this.changeShelf}
-          />
-        )} />
-        <div className="open-search">
-          <Link
-            to={{ pathname: '/search' }}
-            onClick={() => this.setState({ showSearchPage: true })}>Add a book</Link>
-        </div>
+        <Switch>
+          <Route exact path='/' render={() => (
+            <div className="list-books">
+              <Header />
+              <ListBooks
+                books={books}
+                changeShelf={this.changeShelf}
+              />
+              <div className="open-search">
+                <Link to="/search">Add a book</Link>
+              </div>
+            </div>
+          )} />
+
+          <Route path='/search' render={({ history }) => (
+            <SearchBook
+              books={books}
+              changeShelf={this.changeShelf}
+            />
+          )} />
+        </Switch>
+
+
       </div>
     )
   }
