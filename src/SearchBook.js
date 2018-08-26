@@ -32,7 +32,7 @@ class SearchBook extends React.Component {
 
       BooksAPI.search(query).then((books) => {
         if (books.error) {
-          console.log(books.error)
+          this.clearQuery(query)
         } else {
           books.map(book => (this.props.books.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
           this.setState({ books })
